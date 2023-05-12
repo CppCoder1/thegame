@@ -17,7 +17,6 @@ CREATE TABLE player
     FOREIGN KEY(race_id) REFERENCES race(id)
 ) Engine = InnoDB;
 
---Insert new races
 INSERT INTO race(name) VALUE("Ork");
 INSERT INTO race(name) VALUE("Elf");
 INSERT INTO race(name) VALUE("Human");
