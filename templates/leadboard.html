@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>The Game</title>
+    </head>
+    <body>
+        <h1>
+            Leadboard
+        </h1>
+        <table>
+            <thead>
+            <tr>
+                <th scope="col">Gamer</th>
+                <th scope="col">Score</th>
+                <th scope="col">Race</th>
+            </tr>
+            </thead>
+            <tbody>
+                <?php
+
+                    $users = sql_req("SELECT * FROM player ORDER BY score DESC");
+                    foreach($users as $user)
+                    {
+                        $res = sql_req("SELECT name FROM race where id=" . $user["race_id"]);
+
+                        if ($user["id"] == $_COOKIE["id"])
+                        {
+                            echo "<tr style=\"background-color: red\">";
+                        }
+                        else
+                        {
+                            echo "<tr style=\"background-color: blue\">";
+                        }
+
+                        echo "<th scope=\"row\">" . $user["name"] . "</th><td>" . $user["score"] . "</td><td>" . $res[0]["name"] . "</td></tr>";
+                    }
+                    ?>
+            </tbody>
+        </table>
+
+        <form action="game.php">
+            <input type="submit" value="Play again">
+        </form>
+    </body>
+</html>
